@@ -26,10 +26,6 @@ export function evaluateAuthority(input: AuthorityInput): {
     }
   }
 
-  if (input.currency !== input.policyCurrency) {
-    return { decision: 'refuse', reason: 'Action currency must match the policy currency.' };
-  }
-
   if (input.confidence === 'low') {
     if (input.lowConfidence === 'ask') {
       return { decision: 'confirm', reason: 'Low confidence requires confirmation.' };
@@ -38,6 +34,10 @@ export function evaluateAuthority(input: AuthorityInput): {
       return { decision: 'escalate', reason: 'Low confidence requires escalation.' };
     }
     return { decision: 'refuse', reason: 'Policy refuses actions with low confidence.' };
+  }
+
+  if (input.currency !== input.policyCurrency) {
+    return { decision: 'confirm', reason: 'A different currency needs confirmation; unlike amounts are not compared.' };
   }
 
   if (input.amount >= input.confirmAt) {

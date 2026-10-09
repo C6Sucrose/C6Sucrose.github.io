@@ -1,0 +1,16 @@
+export const introduction = {
+  title: 'Introduction',
+  short: 'I study AI, build software, and like finding out how things work. That curiosity follows me into games, the garden, the kitchen, and the night sky.',
+  footer: 'B.Sc. Artificial Intelligence / TH Deggendorf',
+};
+
+export const interests = [
+  { id: 'pc', number: '01', keyLabel: 'BUILD', title: 'Custom PCs & troubleshooting', short: 'I build and troubleshoot my own custom PCs. I enjoy understanding how the components work together — and working out what went wrong when they don’t.', body: 'There’s something satisfying about knowing a machine from the inside out. I like choosing the parts, putting them together, and tracing a stubborn problem back to its source. It’s another way to put my curiosity to work.', footer: 'Hardware / Building / Troubleshooting' },
+  { id: 'games', number: '02', keyLabel: 'PLAY', title: 'Games & modding', short: 'I play games across genres, develop mods, and tinker with games. Sometimes I’m there for the world. Sometimes I want to see what makes it tick.', body: 'I enjoy games of all genres, both as a player and as someone who likes taking a closer look at the systems underneath. Modding gives me a way to make an experience my own. My earlier game-development work at Mindstorm is part of that story.', footer: 'All genres / Mod development / Tinkering' },
+  { id: 'nature', number: '03', keyLabel: 'GROW', title: 'Gardening & nature', short: 'Gardening and nature are part of my life away from technology. There’s room here for things that grow, as well as things that run.', body: 'I enjoy gardening and spending time with nature. It’s a different pace from software and a welcome part of life beyond the keyboard.', footer: 'Gardening / Nature / A little earth' },
+  { id: 'cooking', number: '04', keyLabel: 'COOK', title: 'Cooking', short: 'I enjoy cooking, too. Away from the keyboard, the kitchen gives me another place to make things with my hands.', body: 'Cooking is another hands-on interest of mine. I like that it gives me a very different kind of making to enjoy alongside technical work.', footer: 'In the kitchen / Off the keyboard' },
+  { id: 'sky', number: '05', keyLabel: 'LOOK UP', title: 'Space & the night sky', short: 'Astrophotography, stargazing, and space are some of my interests. The NASA Kepler project is one place where that curiosity meets my studies.', body: 'I’m interested in astrophotography, stargazing, and space — looking up is an easy way to find more questions. Working with Kepler observations let me explore a little of that curiosity through machine learning.', footer: 'Astrophotography / Stargazing / Space' },
+  { id: 'ai', number: '06', keyLabel: 'THINK', title: 'Robotics & AI', short: 'Robotics and AI sit where my personal interests meet my studies. My projects explore computer vision, agentic systems, and how to make their behavior inspectable.', body: 'I’m drawn to both the intelligence inside a system and the engineering that lets it do something useful. Robotics and AI connect that interest to my studies, from perception and applied ML to agents and the tools around them.', footer: 'Robotics / Artificial intelligence / Engineering' },
+] as const;
+
+export type InterestId = (typeof interests)[number]['id'];

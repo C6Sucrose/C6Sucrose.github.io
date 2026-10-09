@@ -1,0 +1,42 @@
+---
+import Artifact from './Artifact.astro';
+import { interests, introduction } from '../data/interests';
+import './workbench.css';
+const channels = { intro: introduction, ...Object.fromEntries(interests.map(interest => [interest.id, interest])) };
+---
+<section class="station" id="station" data-light="high" aria-label="Interactive personal workbench">
+  <div class="station-rim">
+    <div class="station-head"><div class="plate"><span class="station-number">HA–01</span><span>PERSONAL WORKSTATION</span></div><button class="lamp-switch" type="button" aria-label="Lower desk lighting" aria-pressed="false" hidden><span class="led" aria-hidden="true"></span><span class="lamp-state">HIGH</span><span class="light-label">DESK LIGHT</span></button></div>
+    <div class="desk-surface">
+      <svg class="desk-markings" viewBox="0 0 1370 845" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M27 29h20m-10-10v20m1284-10h20m-10-10v20M27 806h20m-10-10v20m1284-10h20m-10-10v20" /><path d="M367 86v560m625-560v560" stroke-dasharray="2 8" opacity=".5" /><path d="M59 259h251M1064 325h226" /><circle cx="1160" cy="131" r="87" opacity=".3" /><circle cx="1160" cy="131" r="100" opacity=".3" /></svg>
+      <div class="crew-tag" aria-hidden="true"><strong>ONE PERSON. SIX CHANNELS.</strong><br />ALL CONNECTED BY CURIOSITY.</div>
+      <div class="pencil" aria-hidden="true"></div>
+      <article class="console">
+        <div class="console-top">
+          <i class="screw s1" aria-hidden="true"></i><i class="screw s2" aria-hidden="true"></i><i class="screw s3" aria-hidden="true"></i><i class="screw s4" aria-hidden="true"></i>
+          <div class="console-label"><span>HA / PERSONAL COMPUTER</span><span>MODEL 01</span></div>
+          <div class="screen-bezel"><div class="screen" id="screen" tabindex="-1">
+            <div class="screen-head"><span id="channel-title">00 / Introduction</span><span aria-hidden="true">● READY</span></div>
+            <h1>huraira<span>ali.<i class="cursor" aria-hidden="true"></i></span></h1>
+            <div aria-live="polite" aria-atomic="true"><p id="console-copy" class="screen-copy">{introduction.short}</p><p class="screen-footer" id="channel-footer">{introduction.footer}</p></div>
+            <a class="channel-link" id="channel-link" href="#about">Meet the person ↓</a>
+          </div></div>
+          <div class="console-chin"><div class="console-vents" aria-hidden="true"></div><span>A SMALL WINDOW<br />INTO MY WORLD.</span><i class="power-light" aria-hidden="true"></i><i class="knob" aria-hidden="true"></i></div>
+        </div>
+        <div class="keyboard" hidden><div class="keyboard-label"><span>CHANNEL SELECT</span><span>PICK AN OBJECT OR PRESS A KEY</span></div><div class="channel-keys" role="group" aria-label="Interest channels">
+          <button class="channel-key" type="button" data-channel="intro" aria-label="Show introduction" aria-controls="console-copy" aria-pressed="true"><strong>⌂</strong><span>HOME</span></button>
+          {interests.map(interest => <button class="channel-key" type="button" data-channel={interest.id} aria-label={interest.title} aria-controls="console-copy" aria-pressed="false"><strong>{interest.number}</strong><span>{interest.keyLabel}</span></button>)}
+        </div></div>
+      </article>
+      {interests.map(interest => <button class:list={['artifact', interest.id]} type="button" data-channel={interest.id} aria-controls="console-copy" aria-pressed="false" aria-label={`Select ${interest.title.toLowerCase()}`}>
+        <span class="artifact-graphic"><Artifact id={interest.id} /></span>
+        <span class="artifact-caption"><b>{interest.number}</b><span>{interest.title}</span></span>
+      </button>)}
+      <div class="desk-meta" aria-hidden="true">DESIGNED FOR EXPLORATION.<br />NO PARTICULAR ORDER REQUIRED.</div><div class="corner-stripes" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    </div>
+    <div class="station-foot"><span><i aria-hidden="true"></i>ALL SIX CHANNELS OPEN</span><a href="#work">HERE FOR THE ENGINEERING? PROJECT LIBRARY ↓</a></div>
+  </div>
+  <noscript><nav class="interest-fallback" aria-label="Interest index">{interests.map(interest => <a href={`#interest-${interest.id}`}>{interest.title}</a>)}</nav></noscript>
+  <script type="application/json" id="channel-data" set:html={JSON.stringify(channels)}></script>
+</section>
+<script src="../scripts/workbench.ts"></script>

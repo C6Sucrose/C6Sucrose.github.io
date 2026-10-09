@@ -10,6 +10,7 @@
   "scripts": {
     "dev": "astro dev --host 127.0.0.1",
     "check": "astro check",
+    "prebuild": "node scripts/generate-social.mjs",
     "build": "astro build",
     "preview": "astro preview --host 127.0.0.1",
     "test": "node --test test/*.test.ts",
@@ -21,9 +22,11 @@
   },
   "devDependencies": {
     "@astrojs/check": "0.9.10",
+    "@axe-core/playwright": "4.13.0",
     "@playwright/test": "1.63.0",
     "@types/node": "24.19.1",
     "parse5": "8.0.1",
+    "sharp": "0.35.5",
     "typescript": "6.0.3"
   }
 }

@@ -1,0 +1,30 @@
+---
+import { getCollection, render } from 'astro:content';
+import RunGuide from './RunGuide.astro';
+import { requestAccess } from '../data/profile';
+const projects = (await getCollection('projects')).sort((a,b) => a.data.number - b.data.number);
+const records = await Promise.all(projects.map(async project => ({ project, ...(project.data.depth === 'compact' ? await render(project) : { Content: undefined }) })));
+const filters = [{ id: 'all', label: 'All projects' }, { id: 'agents', label: 'AI & agents' }, { id: 'vision', label: 'Computer vision' }, { id: 'tooling', label: 'ML & tooling' }];
+const categories = { agents: 'AI / AGENTIC SYSTEMS', vision: 'COMPUTER VISION / EVALUATION', tooling: 'ML / ENGINEERING TOOLING' };
+---
+<section class="library section" id="work" aria-labelledby="library-title"><div class="wrap">
+  <div class="section-heading"><div><p class="eyebrow">Technical library / selected work</p><h2 id="library-title">Open a project.<br /><span class="accent">See what’s inside.</span></h2></div><p>Seven projects. Three detailed case studies. Recorded results, code-review pointers, and practical routes to running the work.</p></div>
+  <div class="filters" data-filters role="group" aria-label="Filter projects" hidden>{filters.map(filter => <button type="button" data-filter={filter.id} aria-pressed={filter.id === 'all'}>{filter.label}</button>)}</div>
+  <p class="filter-count" data-filter-count role="status">7 of 7 projects</p>
+  {records.map(({ project, Content }) => project.data.depth === 'full' ? <article class="project-record" data-project={project.id} data-category={project.data.category} id={`project-${project.id}`}>
+    <div class="project-top"><span class="file-id" aria-hidden="true"><small>FILE</small><strong>{String(project.data.number).padStart(2,'0')}</strong></span>
+      <div class="project-title"><h3><a href={`/projects/${project.id}/`}>{project.data.title}</a></h3><p class="note">{categories[project.data.category]}<br />{project.data.visibility === 'private' ? 'PRIVATE · ACCESS ON REQUEST' : 'PUBLIC SOURCE'}</p></div>
+      <p class="project-summary">{project.data.summary}</p><a class="project-cta" href={`/projects/${project.id}/`}>Open case study <span aria-hidden="true">↗</span></a>
+    </div>
+  </article> : <details class="project-record" data-project={project.id} data-category={project.data.category} id={`project-${project.id}`}>
+    <summary class="project-top compact-summary"><span class="file-id" aria-hidden="true"><small>FILE</small><strong>{String(project.data.number).padStart(2,'0')}</strong></span><span class="project-title"><h3>{project.data.title}</h3><span class="note">{categories[project.data.category]}</span></span><span class="project-summary">{project.data.summary}</span><span class="project-cta">Open brief</span></summary>
+    <div class="project-body"><div class="prose">{Content && <Content />}</div>
+      <ul class="stack" aria-label={`${project.data.title} technologies`}>{project.data.stack.map(tool => <li>{tool}</li>)}</ul>
+      <a class="button" href={project.data.visibility === 'private' ? requestAccess(project.data.title) : project.data.repo}>{project.data.visibility === 'private' ? 'Request access ↗' : 'View source on GitHub ↗'}</a>
+      <div class="review-grid"><div><h4>Where to start a code review</h4><ol class="review-list">{project.data.review.map(item => <li><a href={`${project.data.repo}/blob/${project.data.revision}/${item.path.split('/').map(encodeURIComponent).join('/')}`}><code>{item.path}</code></a><p>{item.note}</p></li>)}</ol>
+        <h4>Evidence &amp; context</h4>{project.data.evidence.map(item => <p class="note"><a href={item.url}>{item.label} ↗</a><br />{item.note}</p>)}
+      </div><div><h4>Run / inspect locally</h4><RunGuide runs={project.data.runs} /></div></div>
+      <p class="note">Source reviewed {project.data.reviewed} · <a href={`${project.data.repo}/commit/${project.data.revision}`}>{project.data.revision.slice(0,7)}</a>. Local execution has not been independently re-benchmarked for this site.</p>
+    </div>
+  </details>)}
+</div></section>

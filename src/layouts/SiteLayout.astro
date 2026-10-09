@@ -1,0 +1,45 @@
+---
+import '../styles/global.css';
+import { profile } from '../data/profile';
+interface Props { title?: string; description?: string; }
+const { title = 'Huraira Ali — a little space for everything', description = 'AI student, builder, and tinkerer. Explore my work in AI and computer vision, my personal interests, and practical guides to reviewing and running my projects.' } = Astro.props;
+const canonical = new URL(Astro.url.pathname === '/404/' ? '/404.html' : Astro.url.pathname, Astro.site);
+const links = [{ href: '/#work', label: 'The work' }, { href: '/#about', label: 'The person' }, { href: '/#interests', label: 'Interests' }, { href: '/#credentials', label: 'Credentials' }];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#eee8d9" /><meta name="description" content={description} />
+    <title>{title}</title><link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content="website" /><meta property="og:title" content={title} />
+    <meta property="og:description" content={description} /><meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL('/illustrations/social.png', Astro.site)} />
+    <meta property="og:image:alt" content="Huraira Ali, AI student and tinkerer — a Space Age personal workstation." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header" id="top">
+      <a class="wordmark" href="/" aria-label="Huraira Ali home">
+        <svg class="monogram" viewBox="0 0 94 50" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6v37m0-18h25m0-19v37M47 43l16-35q3-6 6 0l18 35M56 29h21" /></svg>
+        <span><strong>HURAIRA ALI</strong><small>PERSONAL RESEARCH &amp; RECREATION</small></span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" hidden>Menu <span aria-hidden="true">+</span></button>
+      <nav class="header-nav" id="primary-nav" aria-label="Primary navigation">
+        {links.map(link => <a href={link.href}>{link.label}</a>)}
+        <a href={profile.cv}>CV ↗</a><a class="contact-link" href="/#contact">Make contact ↗</a>
+      </nav>
+    </header>
+    <main id="main"><slot /></main>
+    <footer class="site-footer">
+      <a class="footer-identity" href="/">HA / HURAIRA ALI</a>
+      <span class="mono">BASED ON EARTH · MUNICH, GERMANY</span>
+      <nav aria-label="Social links"><a href={profile.github}>GitHub ↗</a><a href={profile.linkedin}>LinkedIn ↗</a><a href="#top">Back to top ↑</a></nav>
+    </footer>
+    <div class="color-stripes" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <script src="../scripts/site.ts"></script>
+  </body>
+</html>

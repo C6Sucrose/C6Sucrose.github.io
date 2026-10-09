@@ -1,0 +1,36 @@
+---
+import { profile } from '../data/profile';
+import { interests } from '../data/interests';
+import Badge from './Badge.astro';
+interface Props { section: 'about' | 'journey' | 'interests' | 'credentials' | 'feedback' | 'contact' }
+const { section } = Astro.props;
+---
+{section === 'about' && <section class="section wrap" id="about" aria-labelledby="about-title"><div class="about-grid">
+  <div><p class="eyebrow">Operator’s note / a little context</p><h2 id="about-title">Ideas are interesting.<br /><span class="accent">Making them work<br />is the good part.</span></h2><p class="about-caption">AI STUDENT · SOFTWARE BUILDER<br />MUNICH, GERMANY · OPEN TO RELOCATION</p><p class="availability">Looking for working-student or internship<br />opportunities in AI engineering &amp; MLOps.</p></div>
+  <div><div class="prose"><p>{profile.about}</p><p>{profile.background}</p></div><div class="stats">{profile.stats.map(stat => <div><strong>{stat.value}</strong><span>{stat.label}</span></div>)}</div><p class="stats-note">Delivery figures from my Eule experience, as documented in my CV.</p></div>
+</div></section>}
+{section === 'journey' && <section class="section wrap" id="journey" aria-labelledby="journey-title">
+  <div class="section-heading"><div><p class="eyebrow">Personnel file / experience &amp; education</p><h2 id="journey-title">A few stops <span class="accent">along the way.</span></h2></div><p>From computer science and game development in Pakistan to AI studies in Germany, with client work in between.</p></div>
+  <div class="timeline-grid">{[{ title: 'Building & working', entries: profile.experience }, { title: 'Learning & exploring', entries: profile.education }].map(column => <div class="timeline-column"><h3>{column.title}</h3>{column.entries.map(entry => <article class="timeline-entry"><p class="date">{entry.date}</p><h4>{entry.title}</h4><p class="place">{entry.place}</p><p>{entry.detail}</p></article>)}</div>)}</div>
+  <p class="note">Also part of the journey: the Google Gemini XPRIZE hackathon, university societies, and game jams. <a href={profile.cv}>Read the full CV ↗</a></p>
+</section>}
+{section === 'interests' && <section class="personal section" id="interests" aria-labelledby="personal-title"><div class="personal-grid wrap">
+  <div class="personal-intro"><p class="eyebrow">Beyond the work / six other channels</p><h2 id="personal-title">Same curiosity.<br /><span class="accent">Different pursuits.</span></h2><p>Software is one part of my life. These are some of the other things I enjoy, from working with my hands to getting lost in another world.</p><p>A PC on the workbench, a game to tinker with, something growing, something cooking, and a reason to look up.</p><Badge /></div>
+  <div>{interests.map(interest => <details class="interest-entry" id={`interest-${interest.id}`}><summary><span>{interest.number}</span>{interest.title}</summary><p>{interest.body}</p>{interest.id === 'sky' && <p><a href="#project-nasa-kepler">Explore the Kepler project ↗</a></p>}{interest.id === 'ai' && <p><a href="#work">Explore the project library ↗</a></p>}</details>)}</div>
+</div></section>}
+{section === 'credentials' && <section class="section wrap" id="credentials" aria-labelledby="credentials-title">
+  <div class="section-heading"><div><p class="eyebrow">Equipment inventory / skills &amp; credentials</p><h2 id="credentials-title">Tools I use.<br /><span class="accent">Things I’m learning.</span></h2></div><p>Capabilities connected to the work, alongside coursework and training that keep expanding the toolbox.</p></div>
+  <div class="skills-grid">{profile.skills.map(skill => <article class="skill-group"><h3>{skill.title}</h3><p>{skill.tools}</p><a class="text-link" href={skill.href}>{skill.proof} ↗</a></article>)}</div>
+  <h3>Training &amp; certificates</h3><ul class="cert-list">{profile.certificates.map(certificate => <li><span class="issuer">{certificate.issuer}</span><strong>{certificate.title}</strong><span class="date">{certificate.date}</span><a href={`${profile.certificatesFile}#page=${certificate.page}`} aria-label={`View certificate: ${certificate.title}`}>View ↗</a></li>)}</ul>
+  <div class="academic-note"><strong>A few academic highlights</strong><p>{profile.coursework.join(' · ')} — each graded <b>1.0</b> on the supplied transcript (German scale; 1.0 is the highest grade).</p><p class="note">Transcript dated 19 August 2026 · overall grade 2.1 · 138 ECTS recorded.<br />Oskar-Karl scholarship at DIT; 50% scholarship during FAST studies.</p></div>
+  <p class="languages">LANGUAGES / English — C1 professional proficiency.<br />German — A2, actively working toward B1.</p>
+</section>}
+{section === 'feedback' && <section class="section feedback" aria-labelledby="feedback-title"><div class="wrap">
+  <div class="section-heading"><div><p class="eyebrow">Incoming transmission / client feedback</p><h2 id="feedback-title">From the people <span class="accent">on the other side.</span></h2></div><p>Selected client feedback from Eule’s Fiverr work.</p></div>
+  <div class="quote-grid">{profile.testimonials.map(testimonial => <figure><blockquote>“{testimonial.quote}”</blockquote><figcaption>{testimonial.author}<br />{testimonial.location} · Fiverr / Eule</figcaption></figure>)}</div>
+  <p class="note">Exact excerpts from the supplied client-review archive. The archive records a 5.0 overall rating across 25 reviews.</p>
+</div></section>}
+{section === 'contact' && <section class="section wrap" id="contact" aria-labelledby="contact-title"><div class="contact-grid">
+  <div><p class="eyebrow">Open channel / say hello</p><h2 id="contact-title">Something on<br /><span class="accent">your wavelength?</span></h2><p class="lead">An AI role, a project to discuss, or an interest in common — I’d enjoy hearing from you.</p><a class="email-link" href={`mailto:${profile.email}`}>{profile.email} ↗</a><div class="contact-links"><a class="button primary" href={profile.cv}>Download CV ↗</a><a class="button" href={profile.github}>GitHub ↗</a><a class="button" href={profile.linkedin}>LinkedIn ↗</a></div></div>
+  <div><h3>For recruiters</h3><p style="margin-top:17px">I’m interested in working-student and internship roles in AI, ML, and software engineering. Based in Munich and open to relocation.</p><p style="margin-top:14px">My degree’s compulsory internship covers 20–24 weeks, including accompanying courses. We can discuss timing and fit directly.</p><div class="document-requests"><p class="eyebrow">Supporting documents</p><a href={profile.certificatesFile}>View certificate bundle ↗</a>{['Academic transcript', 'Enrollment confirmation', 'Compulsory internship certificate'].map(name => <a href={`mailto:${profile.email}?subject=${encodeURIComponent(`Request: ${name}`)}`}>Request {name.toLowerCase()} ↗</a>)}</div></div>
+</div></section>}

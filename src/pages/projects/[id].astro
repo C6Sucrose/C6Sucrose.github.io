@@ -1,0 +1,32 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import ProjectPreview from '../../components/ProjectPreview.astro';
+import RunGuide from '../../components/RunGuide.astro';
+import { requestAccess } from '../../data/profile';
+
+export async function getStaticPaths() {
+  return (await getCollection('projects')).filter(entry => entry.data.depth === 'full')
+    .map(entry => ({ params: { id: entry.id }, props: { entry } }));
+}
+interface Props { entry: CollectionEntry<'projects'> }
+const { entry } = Astro.props;
+const p = entry.data;
+const { Content } = await render(entry);
+const sourceUrl = `${p.repo}/tree/${p.revision}`;
+const stages = entry.id === 'anon4reid' ? ['Market-1501','Four anonymizers','OSNet utility','Identity attacker','Recorded results'] : entry.id === 'wayfinder' ? ['Voice / text','Host + brain','MCP server','Domain rules','Local store + ledger'] : ['Product brief','Configure','Agent-assisted stages','Build + gates','Package + publish'];
+---
+<SiteLayout title={`${p.title} — Huraira Ali`} description={p.summary}>
+  <header class="wrap case-header"><p class="breadcrumb"><a href="/">Workstation</a> / <a href="/#work">Technical library</a> / File {String(p.number).padStart(2,'0')}</p><p class="eyebrow">Engineering case study / {p.status}</p><h1>{p.title}<span class="accent">.</span></h1><p class="summary">{p.summary}</p>
+    <div class="case-meta"><strong>{p.visibility === 'private' ? 'PRIVATE · ACCESS ON REQUEST' : 'PUBLIC SOURCE'}</strong><span>Source reviewed {p.reviewed}</span><span>Revision {p.revision.slice(0,7)}</span></div>
+    <div class="case-links"><a class="button primary" href="#preview">Explore the preview ↓</a><a class="button" href="#run">Run / review guide ↓</a><a class="button" href={p.visibility === 'private' ? requestAccess(p.title) : sourceUrl}>{p.visibility === 'private' ? 'Request repository access ↗' : 'Browse reviewed source ↗'}</a></div>
+  </header>
+  <div class="wrap">
+    <ol class="diagram" aria-label="Architecture overview">{stages.map((stage,i) => <li><small>0{i+1}</small><b>{stage}</b></li>)}</ol>
+    <ProjectPreview id={entry.id} />
+    <div class="case-body"><article class="prose" id="story"><Content /></article><aside class="case-aside"><h2>Inside this file</h2><nav aria-label="Case study sections"><a href="#preview">Interactive preview ↓</a><a href="#story">Problem &amp; approach ↓</a><a href="#review">Code-review map ↓</a><a href="#run">Local run guide ↓</a><a href="#evidence">Evidence &amp; context ↓</a></nav><p class="big-number">{p.highlight}</p><p class="note">{p.highlightLabel}</p><ul class="stack" aria-label="Technology stack">{p.stack.map(tool => <li>{tool}</li>)}</ul><p class="note">The preview is a lightweight browser experience. Original project requirements are documented below.</p></aside></div>
+    <section class="review-section" id="review" aria-labelledby="review-title"><p class="eyebrow">Review route / a guided code tour</p><h2 id="review-title">Start with these moving parts.</h2><p class="note">{p.visibility === 'private' ? 'Module names are supplied for your walkthrough. Request access to inspect the private repository.' : 'Links open the reviewed revision, so the explanation and the evidence stay connected.'}</p><ol class="review-list">{p.review.map(item => <li>{p.visibility === 'public' ? <a href={`${p.repo}/blob/${p.revision}/${item.path.split('/').map(encodeURIComponent).join('/')}`}><code>{item.path}</code></a> : <code>{item.path}</code>}<p>{item.note}</p></li>)}</ol></section>
+    <section class="review-section" id="run" aria-labelledby="run-title"><p class="eyebrow">Local setup / the practical route</p><h2 id="run-title">Take it for a closer look.</h2>{p.visibility === 'private' && <p><a class="button primary" href={requestAccess(p.title)}>Request access or a walkthrough ↗</a></p>}<RunGuide runs={p.runs} /></section>
+    <section class="review-section" id="evidence" aria-labelledby="evidence-title"><p class="eyebrow">Source notes / evidence &amp; context</p><h2 id="evidence-title">Follow the record.</h2><ul class="evidence-list">{p.evidence.map(item => <li><a href={item.url}>{item.label} ↗</a><p>{item.note}</p></li>)}</ul><p class="note">Repository revision {p.revision.slice(0,7)}, reviewed {p.reviewed}. {p.visibility === 'private' ? 'Code and original tests available after access is granted.' : 'Metrics are attributed to their specific artifacts above.'} This site verifies its browser previews; it does not claim to have rerun the original full application, trained model, or deployment.</p><div class="case-links" style="margin-bottom:55px"><a class="button" href="/#work">← Back to all seven projects</a><a class="button" href="/#contact">Talk about the work ↗</a></div></section>
+  </div>
+</SiteLayout>

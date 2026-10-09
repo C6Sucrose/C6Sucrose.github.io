@@ -1,0 +1,49 @@
+---
+import { anonResults, resultSource } from '../data/anon-results';
+interface Props { id: string }
+const { id } = Astro.props;
+const first = anonResults[0];
+---
+{id === 'anon4reid' && <section class="preview-panel" id="preview" aria-labelledby="preview-title" data-preview="anon">
+  <div class="preview-header"><div><p class="eyebrow">Recorded results / interactive explorer</p><h2 id="preview-title">Privacy has a cost.</h2></div><p class="note">Recorded benchmark data, not live inference. Utility and attacker accuracy are shown in percent. Select a method to inspect its result.</p></div>
+  <label for="anon-method">Anonymization method</label><select id="anon-method">{anonResults.map(row => <option value={row.id}>{row.name}</option>)}</select>
+  <div class="anon-grid"><div class="comparison"><figure><img src="/images/anon/original.png" width="192" height="384" alt="Original Market-1501 query image of a pedestrian carrying a bag." loading="lazy" /><figcaption>Original query</figcaption></figure><figure><img id="anon-image" src="/images/anon/blur.png" width="192" height="384" alt="The same query with Gaussian face blur." loading="lazy" /><figcaption id="anon-image-caption">{first.name}</figcaption></figure></div>
+    <div aria-live="polite" aria-atomic="true">
+      <div class="metric-row"><header><span>Retrieval utility · mAP</span><strong id="anon-map">{first.map.toFixed(2)}%</strong></header><div class="bar-track" aria-hidden="true"><div class="bar" id="anon-map-bar" style={`width:${first.map}%`}></div></div></div>
+      <div class="metric-row"><header><span>Retrieval · Rank-1</span><strong id="anon-rank">{first.rank1.toFixed(2)}%</strong></header><div class="bar-track" aria-hidden="true"><div class="bar" id="anon-rank-bar" style={`width:${first.rank1}%`}></div></div></div>
+      <div class="metric-row"><header><span>Identity recovery · attacker Top-1</span><strong id="anon-leakage">{first.leakage.toFixed(2)}%</strong></header><div class="bar-track" aria-hidden="true"><div class="bar leak" id="anon-leak-bar" style={`width:${first.leakage}%`}></div></div></div>
+      <p class="anon-note" id="anon-note">{first.note}</p><p class="note" style="margin-top:16px">Higher retrieval scores mean more utility. Lower attacker accuracy means less measured identity recovery by this attacker. These are different metrics, not a universal privacy score.</p>
+    </div>
+  </div>
+  <div class="table-scroll" tabindex="0" role="region" aria-label="Recorded results table"><table><caption>All four methods · 3,368 query images in the privacy evaluation</caption><thead><tr><th scope="col">Method</th><th scope="col">mAP</th><th scope="col">Rank-1</th><th scope="col">Attacker accuracy</th></tr></thead><tbody>{anonResults.map(row => <tr data-method-row={row.id}><th scope="row">{row.name}</th><td>{row.map.toFixed(2)}%</td><td>{row.rank1.toFixed(2)}%</td><td>{row.leakage.toFixed(2)}%</td></tr>)}</tbody></table></div>
+  <p class="note" style="margin-top:17px">Sample: Market-1501 query 0094_c3s1_015326_00, from the supplied project portfolio. <a href={resultSource}>Inspect the committed result files ↗</a></p>
+  <script type="application/json" id="anon-data" set:html={JSON.stringify(anonResults)}></script>
+</section>}
+
+{id === 'wayfinder' && <section class="preview-panel" id="preview" aria-labelledby="preview-title" data-preview="authority">
+  <div class="preview-header"><div><p class="eyebrow">Interactive illustration / synthetic inputs</p><h2 id="preview-title">Where should an assistant stop?</h2></div><p class="note">Explore the authority rules on a synthetic proposed action. This runs entirely in your browser; it is not the MCP server and does not read documents or execute an action.</p></div>
+  <div class="preview-controls">
+    <div><label for="action-amount">Document amount</label><input id="action-amount" type="number" value="40" min="0" max="1000000" step="0.01" /></div>
+    <div><label for="action-currency">Document currency</label><select id="action-currency"><option value="EUR">EUR · policy currency</option><option value="USD">USD · different currency</option></select></div>
+    <div><label for="action-confidence">Reading confidence</label><select id="action-confidence"><option value="high">High confidence</option><option value="low">Low confidence</option></select></div>
+    <div><label for="confidence-policy">Low-confidence policy</label><select id="confidence-policy"><option value="ask">Ask for confirmation</option><option value="refuse">Refuse</option><option value="escalate">Escalate to trusted contact</option></select></div>
+    <div><label for="auto-limit">Auto-action limit (EUR)</label><input id="auto-limit" type="number" value="50" min="0" max="1000000" step="0.01" /></div>
+    <div><label for="confirm-at">Confirmation threshold (EUR)</label><input id="confirm-at" type="number" value="100" min="0" max="1000000" step="0.01" /></div>
+  </div>
+  <label style="margin-top:20px"><input id="action-forbidden" type="checkbox" />Action is forbidden</label>
+  <div class="decision" aria-live="polite" aria-atomic="true"><p class="eyebrow">The envelope decides</p><h3 id="authority-decision">Allow</h3><p id="authority-reason">The amount is within the automatic-action limit.</p></div>
+  <p class="note" style="margin-top:20px">Order: forbidden action → low-confidence policy → currency / amount limits. A value reaching the confirmation threshold requires confirmation, including when it also equals the auto-action limit. Invalid numeric input is refused by this illustration.</p>
+  <noscript><p class="note">Enable JavaScript to change the illustration. The displayed default is a high-confidence, permitted EUR40 action with a EUR50 auto limit and EUR100 confirmation threshold.</p></noscript>
+</section>}
+
+{id === 'app-factory' && <section class="preview-panel" id="preview" aria-labelledby="preview-title" data-preview="pipeline">
+  <div class="preview-header"><div><p class="eyebrow">Interactive illustration / release core</p><h2 id="preview-title">A build has to earn its release.</h2></div><p class="note">A synthetic walkthrough of the six-stage release core. The current repository also adds agent-assisted stages. This illustration does not run Flutter, call an agent, or publish an app.</p></div>
+  <label for="pipeline-scenario">Walkthrough scenario</label><select id="pipeline-scenario"><option value="success">All stages pass</option><option value="fail">Quality gate fails repeatedly</option></select>
+  <ol class="diagram" id="pipeline-stages">{['Configure','Build','Gates','Listing','Package','Upload'].map((stage,index) => <li data-stage={index} data-state={index === 0 ? 'current' : 'pending'}><b>{String(index+1).padStart(2,'0')} / {stage}</b><small>{index === 0 ? 'Ready to attempt' : 'Pending'}</small></li>)}</ol>
+  <div class="decision" aria-live="polite" aria-atomic="true"><p class="eyebrow">Run status</p><h3 id="pipeline-status">Ready to configure</h3><p id="pipeline-detail">0 of 6 stages completed. Attempt 1 of 3 for the next stage.</p></div>
+  <div class="preview-buttons"><button type="button" class="button primary" id="pipeline-next">Next step</button><button type="button" class="button" id="pipeline-reset">Reset walkthrough</button></div>
+  <p class="log" id="pipeline-log" role="status">A product brief is ready. Advance to run the first illustrated stage.</p>
+  <p class="note" style="margin-top:18px">An attempt succeeds, retries, or quarantines. After a successful stage, the stored status represents the stage just completed; resume starts at the next stage. This walkthrough uses a maximum of three attempts per stage.</p>
+  <noscript><p class="note">Enable JavaScript to step through the scenario. The six-stage sequence is shown above for review.</p></noscript>
+</section>}
+<script src="../scripts/previews.ts"></script>

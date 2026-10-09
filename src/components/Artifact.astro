@@ -1,0 +1,47 @@
+---
+import type { InterestId } from '../data/interests';
+interface Props { id: InterestId }
+const { id } = Astro.props;
+---
+{id === 'games' && <svg viewBox="0 0 300 192" fill="none" stroke="#373d36" stroke-width="1.5" aria-hidden="true">
+  <rect x="9" y="7" width="282" height="170" rx="13" fill="#343d39" /><rect x="16" y="14" width="268" height="156" rx="8" stroke="#75796a" />
+  <path d="M26 26h248v95H26z" fill="#e9e0c9" /><path d="M26 69h248v11H26z" fill="#cc542e" stroke="none" /><path d="M26 80h248v7H26z" fill="#c19443" stroke="none" />
+  <text x="150" y="47" text-anchor="middle" fill="#333c35" stroke="none" font-family="Arial,sans-serif" font-size="13" font-weight="700">PLAY / MODIFY / REPEAT</text><text x="150" y="62" text-anchor="middle" fill="#666b5a" stroke="none" font-family="monospace" font-size="7">PERSONAL COLLECTION · EVERY GENRE</text>
+  <rect x="67" y="91" width="167" height="35" rx="16" fill="#333c35" stroke="#9d9e83" /><circle cx="93" cy="108" r="19" fill="#b0b39b" /><circle cx="207" cy="108" r="19" fill="#b0b39b" />
+  <g fill="#2d3832"><circle cx="93" cy="108" r="10" /><circle cx="207" cy="108" r="10" /></g><g stroke="#d4d1b7" stroke-width="3"><path d="M93 91v7m-16 9h7m9 11v7m10-18h7m-3-13-6 6m-15 15-5 6m0-27 5 6m15 15 6 6M207 91v7m-16 9h7m9 11v7m10-18h7m-3-13-6 6m-15 15-5 6m0-27 5 6m15 15 6 6" /></g>
+  <path d="M122 100h57v17h-57z" fill="#86886e" /><path d="M67 144h166l9 26H58Z" fill="#5a6254" /><path d="M87 153h127m-133 7h140" stroke="#77816a" />
+  <g fill="#b6b7a0"><circle cx="26" cy="158" r="3" /><circle cx="272" cy="158" r="3" /><circle cx="26" cy="17" r="3" /><circle cx="272" cy="17" r="3" /></g><text x="35" y="111" fill="#353f36" stroke="none" font-family="Arial" font-size="16" font-weight="700">A</text><text x="246" y="111" fill="#353f36" stroke="none" font-family="monospace" font-size="12">C60</text>
+</svg>}
+{id === 'pc' && <svg viewBox="0 0 245 276" fill="none" stroke="#374c47" stroke-width="1.5" aria-hidden="true">
+  <path d="M14 13h205v240H14z" fill="#5c8290" /><path d="M22 22h188v222H22z" stroke="#97b6ae" />
+  <g stroke="#bec5a3" stroke-width="1"><path d="M32 34h27v37h22M37 162h40v15h22m93-66h-20v41m22 74h-39v-52M134 27v35h-30M68 28v21h33M39 221v-37h44M198 45v29h-33M141 226v-21h-35" /><path d="M26 79h29v21h20m39 95v37h-13M171 36v47h17m-97-59v14h20" /></g>
+  <path d="M79 77h91v92H79z" fill="#bdc0ae" /><path d="M75 83H65m10 13H65m10 13H65m10 13H65m10 13H65m10 13H65m105-65h10m-10 13h10m-10 13h10m-10 13h10m-10 13h10m-10 13h10" stroke="#d2c7a4" stroke-width="4" />
+  <circle cx="125" cy="123" r="39" fill="#354643" /><circle cx="125" cy="123" r="32" stroke="#7a9384" /><g fill="#8b9d8a"><path d="M120 115c-22-23-35-3-17 9l18 1Z" /><path d="M130 117c15-25 32-11 20 6l-20 7Z" /><path d="M125 131c12 25-13 31-17 10l10-14Z" /></g><circle cx="125" cy="123" r="9" fill="#c7bc92" />
+  <path d="M32 88h18v92H32zM180 170h16v52h-16z" fill="#354744" /><path d="M30 185h29v17H30zM166 32h27v10h-27z" fill="#c0683a" />
+  <g fill="#cec094" stroke="#8c835a"><path d="M43 253v14h9v-14m6 0v14h9v-14m6 0v14h9v-14m6 0v14h9v-14m6 0v14h9v-14m6 0v14h9v-14m6 0v14h9v-14m6 0v14h9v-14m6 0v14h9v-14" /></g>
+  <g fill="#c7c6a9"><circle cx="30" cy="31" r="4" /><circle cx="202" cy="31" r="4" /><circle cx="30" cy="235" r="4" /><circle cx="202" cy="235" r="4" /></g><path d="M69 191h93v22H69z" fill="#eee3c8" stroke="none" /><text x="115" y="205" text-anchor="middle" font-family="monospace" font-size="8" fill="#354744" stroke="none">BUILD / REPAIR</text>
+</svg>}
+{id === 'sky' && <svg viewBox="0 0 325 300" fill="none" stroke="#3d514a" stroke-width="1.5" aria-hidden="true">
+  <path d="M24 10h278v220H24z" fill="#eae1cb" /><path d="M34 19h258v201H34z" fill="#374e54" stroke="none" />
+  <g stroke="#7c9d96" stroke-width=".7"><circle cx="164" cy="112" r="79" /><circle cx="164" cy="112" r="62" /><circle cx="164" cy="112" r="42" /><path d="M164 22v195M36 112h255m-222 47 187-97M59 51l205 122" /></g>
+  <g fill="#e7d8ac" stroke="none"><circle cx="113" cy="65" r="2" /><circle cx="153" cy="79" r="2.5" /><circle cx="190" cy="54" r="2" /><circle cx="220" cy="82" r="3" /><circle cx="200" cy="132" r="2.5" /><circle cx="160" cy="164" r="2" /><circle cx="107" cy="151" r="2" /><circle cx="92" cy="111" r="2" /><circle cx="61" cy="36" r="1" /><circle cx="262" cy="51" r="1" /><circle cx="253" cy="173" r="1" /></g><path d="m113 65 40 14 37-25 30 28-20 50-40 32-53-13-15-40" stroke="#c4c6a5" stroke-width=".9" />
+  <g transform="translate(174 192) rotate(-24)" stroke="#35453e" stroke-width="2"><path d="M-62 8H66v43H-62Z" fill="#e2d8bf" /><path d="M-61 7h17v45h-17M39 7h24v45H39Z" fill="#c76237" /><path d="M-71 3h12v54h-12zM63 2h16v56H63z" fill="#ded7bb" /><path d="M79 9h17v42H79z" fill="#52696a" /><path d="M-88 19h17v19h-17z" fill="#425a52" /><path d="M-9 51v17h22V51m-12 17v50m0-35-46 31m46-31 44 31" fill="#828d77" /><path d="M-33 7v45m54-45v45" /><path d="M-35-2h62v9h-62z" fill="#7d978e" /></g>
+</svg>}
+{id === 'nature' && <svg viewBox="0 0 220 269" fill="none" stroke="#40553c" stroke-width="1.5" aria-hidden="true">
+  <ellipse cx="109" cy="242" rx="63" ry="13" fill="#687253" opacity=".2" stroke="none" /><path d="m53 166 15 69c3 13 71 14 77 0l16-69" fill="#bd7651" /><ellipse cx="107" cy="166" rx="55" ry="18" fill="#d6976b" /><ellipse cx="107" cy="162" rx="47" ry="12" fill="#535b42" />
+  <path d="M108 163c-7-40-10-76-2-117m0 79-28-37m31 63 30-35m-30-34 26-36m-27 50-25-38" stroke-width="3" />
+  <path d="M106 68C80 56 81 24 108 16c29 9 29 40-2 52Z" fill="#799576" /><path d="M79 100C48 104 37 77 46 63c30-7 54 12 33 37Z" fill="#94a57d" /><path d="M133 76c-3-27 27-47 48-34 2 27-18 46-48 34Z" fill="#688c71" /><path d="M139 126c-4-31 26-50 48-33 0 27-22 42-48 33Z" fill="#899e74" /><path d="M84 139c-28 10-51-13-43-33 26-16 53-2 43 33Z" fill="#5c8469" />
+  <g stroke="#c4c69b" stroke-width="1"><path d="m107 29-1 31m-51 10 20 25m96-45-31 23m37 29-32 22m-94-11 28 23" /></g>
+  <rect id="pot-label-box" x="67" y="187" width="80" height="32" fill="#ebe0bd" stroke="#ad7950" /><text id="pot-label" x="107" y="205" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="8" fill="#35482f" stroke="none">LIFE SUPPORT</text>
+  <path d="m147 177 16-53 20 6-15 53Z" fill="#ede3c5" /><path d="m165 134 11 3m-13 4 11 3m-13 4 9 3" stroke-width="1" />
+</svg>}
+{id === 'cooking' && <svg viewBox="0 0 290 165" fill="none" stroke="#475441" stroke-width="1.5" aria-hidden="true">
+  <g transform="translate(18 15) rotate(-6 77 65)"><path d="M0 0h160v123H0z" fill="#eee5cb" /><path d="M0 0h160v18H0z" fill="#c05331" stroke="none" /><text x="80" y="12" text-anchor="middle" font-family="monospace" font-size="7" fill="#f7e9cc" stroke="none">KITCHEN / WORKING NOTES</text><path d="M12 33h136M12 49h136M12 65h136M12 81h136M12 97h136M12 113h136" stroke="#c2c1a4" stroke-width=".8" /><path d="M8 29v87" stroke="#b38264" stroke-width=".6" /></g>
+  <g transform="translate(88 -1) rotate(11 90 83)"><path d="m128 71 70-8c12-1 14 17 1 20l-72 8" fill="#455449" /><ellipse cx="83" cy="80" rx="57" ry="50" fill="#3d4f43" /><ellipse cx="83" cy="80" rx="48" ry="41" fill="#2e4037" stroke="#85916e" /><path d="M50 67c-9-16 17-30 29-19 20-9 45 11 34 27 12 13-6 36-21 24-19 13-43 0-36-13-15-1-16-15-6-19Z" fill="#e8dfb7" stroke="#adb68d" /><ellipse cx="83" cy="72" rx="17" ry="15" fill="#d4a144" stroke="#b78b36" /><ellipse cx="181" cy="73" rx="9" ry="3" fill="#dad5bb" /></g><path d="m202 130 21 4m-12-14 3 27m21-36 11 9m-4-15-3 25" stroke="#6d8154" stroke-width="3" />
+</svg>}
+{id === 'ai' && <svg viewBox="0 0 277 160" fill="none" stroke="#c9d4bc" stroke-width="1.4" aria-hidden="true">
+  <path d="M6 3h260v148H6z" fill="#597f8b" stroke="#3e5e65" /><path d="M13 10h246v134H13z" stroke="#a2bab1" stroke-width=".7" />
+  <g stroke="#a2bab1" stroke-width=".5" opacity=".6"><path d="M13 32h245M13 54h245M13 76h245M13 98h245M13 120h245M35 10v134M57 10v134M79 10v134M101 10v134M123 10v134M145 10v134M167 10v134M189 10v134M211 10v134M233 10v134" /></g>
+  <path d="M112 115h74v11h-74Zm22-1-7-23 26-9 13 32m-21-31 27-42-15-9-30 47m30-47-41-15-9 17 43 17" fill="#73949a" /><circle cx="140" cy="87" r="13" fill="#a0b4ab" /><circle cx="164" cy="39" r="11" fill="#d3c59d" /><circle cx="111" cy="26" r="7" fill="#bdc9b2" />
+  <path d="m105 28-19 3-9-8m15 8-5 16 7 6M192 84h42m-9-8 9 8-9 8M100 63l-12 16 9 8" stroke="#dfc186" /><text x="23" y="30" font-family="Arial,sans-serif" font-size="8" font-weight="700" fill="#e8e1c5" stroke="none">FIG. 06</text><text x="137" y="138" text-anchor="middle" font-family="monospace" font-size="7" fill="#e8e1c5" stroke="none">ROBOTICS / ARTIFICIAL INTELLIGENCE</text>
+</svg>}

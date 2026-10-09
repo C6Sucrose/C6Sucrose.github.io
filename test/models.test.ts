@@ -122,14 +122,14 @@ for (const scenario of [
   });
 }
 
-test('authority refuses currency mismatch instead of comparing unlike amounts', () => {
+test('authority requests confirmation on currency mismatch instead of comparing unlike amounts', () => {
   const result = evaluateAuthority({ ...policy, currency: 'USD' });
 
-  assert.equal(result.decision, 'refuse');
+  assert.equal(result.decision, 'confirm');
   assert.match(result.reason, /currency/i);
 });
 
-test('authority refuses currency mismatch before low-confidence escalation', () => {
+test('low-confidence escalation takes precedence over currency mismatch', () => {
   const result = evaluateAuthority({
     ...policy,
     currency: 'USD',
@@ -137,8 +137,8 @@ test('authority refuses currency mismatch before low-confidence escalation', () 
     lowConfidence: 'escalate',
   });
 
-  assert.equal(result.decision, 'refuse');
-  assert.match(result.reason, /currency/i);
+  assert.equal(result.decision, 'escalate');
+  assert.match(result.reason, /confidence/i);
 });
 
 for (const field of ['amount', 'autoLimit', 'confirmAt'] as const) {

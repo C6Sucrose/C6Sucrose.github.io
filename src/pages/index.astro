@@ -1,14 +1,17 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Huraira</title>
-  </head>
-  <body>
-    <main>
-      <h1>Huraira</h1>
-      <p>Personal site under construction.</p>
-    </main>
-  </body>
-</html>
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import Workbench from '../components/Workbench.astro';
+import ProjectLibrary from '../components/ProjectLibrary.astro';
+import ProfileSections from '../components/ProfileSections.astro';
+---
+<SiteLayout>
+  <div class="masthead"><div><p class="eyebrow">Builder / tinkerer / occasional stargazer</p><h2>A little space <span class="accent">for everything.</span></h2></div><p>AI and software, with a few detours.<br />Select an object. Get to know its owner.</p></div>
+  <Workbench />
+  <ProfileSections section="about" />
+  <ProjectLibrary />
+  <ProfileSections section="journey" />
+  <ProfileSections section="interests" />
+  <ProfileSections section="credentials" />
+  <ProfileSections section="feedback" />
+  <ProfileSections section="contact" />
+</SiteLayout>
