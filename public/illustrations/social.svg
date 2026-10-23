@@ -1,1 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630"><rect width="1200" height="630" fill="#eee8d9"/><path d="M60 90h1080M60 536h1080" stroke="#b6b09f"/><text x="60" y="64" font-family="monospace" font-size="16" fill="#5b6154">HA / PERSONAL RESEARCH &amp; RECREATION</text><text x="60" y="219" font-family="Arial,sans-serif" font-weight="bold" font-size="95" letter-spacing="-5" fill="#292e2d">huraira ali.</text><text x="63" y="283" font-family="Arial,sans-serif" font-size="37" fill="#b64023">A little space for everything.</text><text x="63" y="378" font-family="monospace" font-size="21" fill="#292e2d">AI STUDENT / BUILDER / TINKERER</text><text x="63" y="418" font-family="monospace" font-size="19" fill="#5b6154">PROJECTS. INTERESTS. A REASON TO LOOK UP.</text><text x="63" y="582" font-family="monospace" font-size="20" fill="#292e2d">c6sucrose.github.io</text><rect x="822" y="163" width="320" height="286" rx="20" fill="#d5cfbe" stroke="#848572" stroke-width="3"/><rect x="840" y="185" width="283" height="211" rx="12" fill="#293b38"/><text x="863" y="229" font-family="monospace" font-size="14" fill="#c7caae">PERSONAL WORKSTATION</text><text x="866" y="309" font-family="Arial,sans-serif" font-size="72" font-weight="bold" fill="#e7d9b0">HA–01</text><path d="M865 338h230" stroke="#71816a"/><text x="865" y="369" font-family="monospace" font-size="14" fill="#ddb465">ALL SIX CHANNELS OPEN</text><circle cx="1090" cy="423" r="10" fill="#b64023"/><path d="M0 610h1200" stroke="#c94d2b" stroke-width="40"/><path d="M780 610h420" stroke="#b47b3b" stroke-width="40"/><path d="M960 610h240" stroke="#d5b158" stroke-width="40"/><path d="M1080 610h120" stroke="#557c87" stroke-width="40"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs><pattern id="social-barcode" width="113" height="20" patternUnits="userSpaceOnUse">
+    <rect width="3" height="20" fill="#E9E4D6"/><rect x="7" width="1" height="20" fill="#FF2A4F"/>
+    <rect x="13" width="7" height="20" fill="#E9E4D6"/><rect x="25" width="2" height="20" fill="#FF2A4F"/>
+    <rect x="34" width="5" height="20" fill="#E9E4D6"/><rect x="44" width="1" height="20" fill="#E9E4D6"/>
+    <rect x="51" width="9" height="20" fill="#FF2A4F"/><rect x="67" width="3" height="20" fill="#E9E4D6"/>
+    <rect x="76" width="2" height="20" fill="#E9E4D6"/><rect x="86" width="7" height="20" fill="#FF2A4F"/>
+    <rect x="99" width="4" height="20" fill="#E9E4D6"/>
+  </pattern></defs>
+  <rect width="1200" height="630" fill="#0C1214"/>
+  <path d="M0 3h720" stroke="#E9E4D6" stroke-width="6"/><path d="M720 3h240" stroke="#FF2A4F" stroke-width="6"/><path d="M960 3h240" stroke="#C2DE5E" stroke-width="6"/>
+  <text x="68" y="66" font-family="Consolas,monospace" font-size="14" letter-spacing="2" fill="#C9C3B2">HA / PERSONAL RESEARCH &amp; RECREATION</text>
+  <svg x="966" y="76" width="166" height="166" viewBox="0 0 100 100">
+    <rect width="100" height="100" fill="#0C1214"/>
+    <text x="50" y="76" text-anchor="middle" textLength="84" lengthAdjust="spacingAndGlyphs" fill="#E9E4D6" font-family="Arial Narrow, Helvetica Neue, Arial, sans-serif" font-size="80" font-weight="900">HA</text>
+    <g data-mark-stripe=""><rect x="10" y="49" width="80" height="2" fill="#FF2A4F"/></g>
+  </svg>
+  <text x="68" y="225" textLength="838" lengthAdjust="spacingAndGlyphs" font-family="Arial Narrow, Helvetica Neue, Arial, sans-serif" font-size="112" font-weight="900" letter-spacing="-2" fill="#E9E4D6">HURAIRA ALI</text>
+  <text x="72" y="283" font-family="Arial,sans-serif" font-size="32" fill="#C9C3B2">A little space for everything.</text>
+  <rect x="68" y="332" width="1064" height="153" fill="#141C1F" stroke="#C9C3B2"/>
+  <path d="M64 346v-18h18m1054 18v-18h-18M64 472v17h18m1054-17v17h-18" fill="none" stroke="#C9C3B2" stroke-width="2"/>
+  <g font-family="Consolas,monospace" font-size="14" letter-spacing="2" fill="#C9C3B2">
+    <text x="92" y="371">DEVELOPER</text><text x="561" y="371">SERIES</text><text x="846" y="371">STATUS</text>
+  </g>
+  <g font-family="Arial,sans-serif" font-size="24" fill="#E9E4D6">
+    <text x="92" y="412">AI STUDENT / BUILDER / TINKERER</text><text x="561" y="412">HA–01</text><text x="846" y="412">OPEN</text>
+  </g>
+  <text x="92" y="460" font-family="Consolas,monospace" font-size="16" fill="#C9C3B2">PROJECTS. INTERESTS. A REASON TO LOOK UP.</text>
+  <text x="68" y="574" font-family="Consolas,monospace" font-size="20" fill="#C9C3B2">c6sucrose.github.io</text>
+  <rect y="610" width="1200" height="20" fill="url(#social-barcode)"/>
+</svg>

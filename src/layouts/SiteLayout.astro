@@ -1,45 +1,70 @@
 ---
 import '../styles/global.css';
 import { profile } from '../data/profile';
+import Transmission from '../components/Transmission.astro';
 interface Props { title?: string; description?: string; }
 const { title = 'Huraira Ali — a little space for everything', description = 'AI student, builder, and tinkerer. Explore my work in AI and computer vision, my personal interests, and practical guides to reviewing and running my projects.' } = Astro.props;
 const canonical = new URL(Astro.url.pathname === '/404/' ? '/404.html' : Astro.url.pathname, Astro.site);
 const links = [{ href: '/#work', label: 'The work' }, { href: '/#about', label: 'The person' }, { href: '/#interests', label: 'Interests' }, { href: '/#credentials', label: 'Credentials' }];
 ---
 <!doctype html>
-<html lang="en">
+<html lang="en" data-transmission="on">
   <head>
     <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#eee8d9" /><meta name="description" content={description} />
+    <meta name="theme-color" content="#0C1214" /><meta name="description" content={description} />
     <title>{title}</title><link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta property="og:type" content="website" /><meta property="og:title" content={title} />
     <meta property="og:description" content={description} /><meta property="og:url" content={canonical} />
     <meta property="og:image" content={new URL('/illustrations/social.png', Astro.site)} />
-    <meta property="og:image:alt" content="Huraira Ali, AI student and tinkerer — a Space Age personal workstation." />
+    <meta property="og:image:alt" content="Huraira Ali — Transmission identity, specification plate, and barcode." />
     <meta name="twitter:card" content="summary_large_image" />
-    <script is:inline>document.documentElement.classList.add('js');</script>
+    <script is:inline>
+      document.documentElement.classList.add('js');
+      try { document.documentElement.dataset.transmission = localStorage.getItem('ha-transmission') === 'off' ? 'off' : 'on'; }
+      catch { document.documentElement.dataset.transmission = 'on'; }
+    </script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <header class="site-header" id="top">
+    <header class="site-header" id="top" data-signal-surface>
       <a class="wordmark" href="/" aria-label="Huraira Ali home">
-        <svg class="monogram" viewBox="0 0 94 50" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6v37m0-18h25m0-19v37M47 43l16-35q3-6 6 0l18 35M56 29h21" /></svg>
+        <svg class="monogram" viewBox="0 0 100 100" aria-hidden="true">
+          <rect width="100" height="100" fill="var(--hull)" />
+          <text x="50" y="76" text-anchor="middle" textLength="84" lengthAdjust="spacingAndGlyphs"
+            fill="var(--bone)" font-family="Arial Narrow, Helvetica Neue, Arial, sans-serif"
+            font-size="80" font-weight="900">HA</text>
+          <g data-mark-stripe><rect x="10" y="49" width="80" height="2" fill="var(--core)" /></g>
+        </svg>
         <span><strong>HURAIRA ALI</strong><small>PERSONAL RESEARCH &amp; RECREATION</small></span>
       </a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" hidden>Menu <span aria-hidden="true">+</span></button>
+      <div class="menu-slot">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" hidden>Menu <span aria-hidden="true">+</span></button>
+        <details class="menu-fallback">
+          <summary>Menu <span aria-hidden="true">+</span></summary>
+          <nav class="header-nav" aria-label="Primary navigation">
+            {links.map(link => <a href={link.href}>{link.label}</a>)}
+            <a href={profile.cv}>CV ↗</a><a class="contact-link" href="/#contact">Make contact ↗</a>
+          </nav>
+        </details>
+      </div>
       <nav class="header-nav" id="primary-nav" aria-label="Primary navigation">
         {links.map(link => <a href={link.href}>{link.label}</a>)}
         <a href={profile.cv}>CV ↗</a><a class="contact-link" href="/#contact">Make contact ↗</a>
       </nav>
+      <Transmission part="control" />
     </header>
     <main id="main"><slot /></main>
-    <footer class="site-footer">
+    <footer class="site-footer" data-signal-surface>
       <a class="footer-identity" href="/">HA / HURAIRA ALI</a>
       <span class="mono">BASED ON EARTH · MUNICH, GERMANY</span>
       <nav aria-label="Social links"><a href={profile.github}>GitHub ↗</a><a href={profile.linkedin}>LinkedIn ↗</a><a href="#top">Back to top ↑</a></nav>
     </footer>
-    <div class="color-stripes" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <Transmission part="layers" />
+    <div class="barcode-strip" aria-hidden="true">
+      {[3, 1, 5, 2, 1, 7, 2, 4].map(width => <i style={`--bar:${width}`} />)}
+    </div>
     <script src="../scripts/site.ts"></script>
+    <script src="../scripts/alive.ts"></script>
   </body>
 </html>

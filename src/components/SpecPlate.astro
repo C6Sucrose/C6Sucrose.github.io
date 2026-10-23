@@ -1,0 +1,9 @@
+---
+interface Props { title: string; items: { label: string; value: string }[]; tone?: 'hull' | 'bone'; }
+const { title, items, tone = 'hull' } = Astro.props;
+---
+<div class:list={['spec-plate', `spec-plate--${tone}`]}>
+  <p class="spec-title">{title}</p>
+  {items.length > 0 && <dl>{items.map(item => <div><dt>{item.label}</dt><dd>{item.value}</dd></div>)}</dl>}
+  <i class="spec-corners" aria-hidden="true" />
+</div>

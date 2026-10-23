@@ -68,6 +68,23 @@ test('workbench graphics stay clickable and badge stripes are centered', async (
       expect(unobscured, `${id} covered at ${width}px`).toBe(true);
     }
   }
-  const badge = await page.locator('#badge-stripes').evaluate(element => { const box = (element as unknown as SVGGraphicsElement).getBBox(); return { x:box.x+box.width/2, y:box.y+box.height/2 }; });
-  expect(badge.x).toBeCloseTo(65,0); expect(badge.y).toBeCloseTo(65,0);
+  const mark = await page.locator('.personal-mark [data-mark-stripe]').evaluate(element => {
+    const stripe = element as SVGGraphicsElement, svg = stripe.ownerSVGElement!;
+    const b = stripe.getBBox(), vb = svg.viewBox.baseVal;
+    const point = new DOMPoint(b.x+b.width/2,b.y+b.height/2)
+      .matrixTransform(svg.getScreenCTM()!.inverse().multiply(stripe.getScreenCTM()!));
+    return { width:b.width, dx:(point.x-vb.x-vb.width/2)/vb.width, dy:(point.y-vb.y-vb.height/2)/vb.height };
+  });
+  expect(mark.width).toBeGreaterThan(0);
+  expect(Math.abs(mark.dx)).toBeLessThan(.01);
+  expect(Math.abs(mark.dy)).toBeLessThan(.01);
+});
+
+test('custom 404 has an accessible transmission shell', async ({ page }) => {
+  const response = await page.goto('/not-a-real-coordinate/');
+  expect(response?.status()).toBe(404);
+  await expect(page.locator('h1')).toHaveCount(1);
+  await expect(page.getByRole('heading', { name: 'Signal not found.' })).toBeVisible();
+  const result = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
+  expect(result.violations).toEqual([]);
 });
