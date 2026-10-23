@@ -1,6 +1,13 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
+import SpecPlate from '../components/SpecPlate.astro';
 ---
 <SiteLayout title="Signal not found — Huraira Ali" description="This coordinate does not have a page. Return to Huraira Ali’s personal workstation and project library.">
-  <section class="wrap section" style="min-height:65vh"><p class="eyebrow">Navigation report / 404</p><h1 style="font-size:clamp(46px,8vw,100px);margin-bottom:24px">Signal <span class="accent">not found.</span></h1><p>This coordinate doesn’t have a page. The workstation is still right here.</p><div class="case-links"><a class="button primary" href="/">Return to the workstation</a><a class="button" href="/#work">Explore the project library</a></div></section>
+  <section class="wrap section missing-page" data-signal-surface>
+    <SpecPlate title="Navigation report / 404" items={[]} />
+    <span class="case-numeral" aria-hidden="true">404</span>
+    <h1>Signal <span class="accent">not found.</span></h1>
+    <p>This coordinate doesn’t have a page. The workstation is still right here.</p>
+    <div class="case-links"><a class="button primary" href="/">Return to the workstation</a><a class="button" href="/#work">Explore the project library</a></div>
+  </section>
 </SiteLayout>

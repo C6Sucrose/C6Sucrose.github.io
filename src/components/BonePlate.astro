@@ -1,0 +1,9 @@
+---
+interface Props { id?: string; labelledby?: string; class?: string; }
+const { id, labelledby, class: className } = Astro.props;
+---
+<section id={id} aria-labelledby={labelledby} class:list={['bone-plate', className]}>
+  <div class="hull-stripe" aria-hidden="true" />
+  {Astro.slots.has('heading') && <div class="bone-heading hull-surface" data-signal-surface><div class="wrap"><slot name="heading" /></div></div>}
+  <div class="bone-content wrap"><slot /></div>
+</section>

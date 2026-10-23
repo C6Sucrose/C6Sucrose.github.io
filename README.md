@@ -2,7 +2,16 @@
 
 **[c6sucrose.github.io](https://c6sucrose.github.io)**
 
-A personal website built around a Space Age workbench: AI and software projects, a professional/academic journey, and life beyond the keyboard. Original illustrated hardware, cassette graphics, a telescope, a plant, cooking notes, and a robotics sketch lead into six interest channels.
+A personal website presented as a Transmission machine bay: teal-charcoal housing,
+bone printed plates, and six original cel-flat specimens. CSS supplies their individual
+cadences; optional JavaScript adds phase offsets, bounded pointer reactions, a
+session-once boot, and occasional transmission tears.
+
+The header Transmission button persists its preference when localStorage is available.
+Reduced motion and effects-off freeze the specimens at composed frames. Long prose
+stays on opaque bone plates; transmission texture is restricted to dark surfaces and
+painted beneath their content. Content and conventional links remain available without
+the animation runtime.
 
 ## Run locally
 
@@ -34,6 +43,29 @@ npm run test:e2e
 
 On Windows the configuration uses installed Microsoft Edge (`msedge`); CI uses Chromium. The browser suite starts the built site's preview server, so run `npm run build` first. It covers real interactions, private-access routes, copy fallback, no-JavaScript content, responsive artwork geometry, screenshots, and axe accessibility checks. Screenshots/traces are written to the ignored `test-results/` folder.
 
+Build before browser tests. For durable visual and motion evidence:
+
+```sh
+npm run build
+node --test test/review-runner.test.mjs
+node scripts/review-transmission.mjs --record
+node scripts/review-transmission.mjs --visibility-only --headed
+```
+
+The reviewer starts and stops its own sequential local preview, refusing an occupied
+port 4321 and allowing up to 60s for startup. `SITE_URL` selects an existing preview or
+deployed site. `--visibility-only --headed` scopes the mandatory native visibility gate.
+It uses an owned raw headed browser/default CDP context, a blank tab and native window
+minimize/restore. On Windows it verifies PID ownership and foreground activation,
+parks the physical cursor outside while hidden, then restores the cursor during cleanup.
+Missing native cancellation, fresh resume or ambient-deadline evidence produces exit 1.
+`--headed` also shows the layout-review browser. Results are timestamped under
+`.superpowers/transmission-review/`, with measurements checkpointed before long
+recordings. The factual delivery record is `docs/transmission-verification.md`.
+The browser trace is a separate run from solo callback timing; open its JSON in
+DevTools Performance. Inspect the screenshots and WebM recordings before approving
+visual quality. The seven reviewer attribution/acceptance tests accompany the 45 model tests.
+
 To check the published site in PowerShell:
 
 ```powershell
@@ -50,10 +82,14 @@ npm run test:e2e
 | Project summaries, setup instructions, evidence, case-study text | `src/content/projects/*.md` |
 | Project content schema | `src/data/project-schema.ts` |
 | Recorded ANON results | `src/data/anon-results.ts` |
-| Original workstation drawings | `src/components/Artifact.astro` |
+| Original cel-flat specimens and CSS cadence/response tracks | `src/components/Artifact.astro`, `src/styles/artifacts.css` |
+| Motion lifecycle, guards, boot and tears | `src/scripts/alive.ts` |
+| Printed specification and prose surfaces | `src/components/SpecPlate.astro`, `src/components/BonePlate.astro` |
+| Transmission control and decorative layers | `src/components/Transmission.astro` |
 | Workbench layout and geometry | `src/components/workbench.css` |
 | Centered personal badge | `src/components/Badge.astro` |
 | Shared layout and colors | `src/layouts/SiteLayout.astro`, `src/styles/global.css` |
+| Durable review command and factual delivery record | `scripts/review-transmission.mjs`, `docs/transmission-verification.md` |
 | Public CV and certificate bundle | `public/downloads/` |
 | Project sample images | `public/images/` |
 
@@ -71,13 +107,16 @@ Site tests establish website behavior; they are not evidence that the original p
 
 ## Design and readability
 
-The approved direction combines NASA-retro / Space Age colors and cassette futurism with an original personal workstation. Ash Thorp's work informed mechanical detail and composition; no artwork from that site is bundled.
+The Transmission machine bay uses teal-charcoal housing, opaque bone copy, original
+cel-flat specimens and restrained mechanical signals. No external artwork or webfonts
+are bundled.
 
 - Captions have their own layout areas beneath artwork.
-- The telescope does not cover a heading or caption.
+- Six independent CSS cadences animate only explicit internal motion nodes; pointer input never moves a plate or caption.
 - Plant-pot lettering is centered and checked against its label rectangle.
 - Badge stripes share a symmetrical centered group.
-- Reduced motion is respected; no autoplay audio or flashing screen effect.
+- Bone text/links use ink or plate-safe red; dark controls use trim focus rings. Grain stays underneath dark content.
+- Reduced motion and effects-off restore composed stills. Tears share a single bounded band and a 334ms admission guard; there is no autoplay audio.
 - All professional content has conventional links/navigation in addition to the illustrated route.
 - Core content, project disclosures, and downloads remain available without JavaScript.
 

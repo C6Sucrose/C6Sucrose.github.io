@@ -121,14 +121,24 @@ for (const width of [320, 390, 768, 1024, 1440]) {
         const caption = element.querySelector('.artifact-caption')!.getBoundingClientRect();
         return { clear: caption.top >= graphic.bottom - 1, id: element.getAttribute('data-channel') };
       });
-      const text = (document.querySelector('#pot-label') as unknown as SVGGraphicsElement).getBBox();
-      const rect = (document.querySelector('#pot-label-box') as unknown as SVGGraphicsElement).getBBox();
-      return { overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1, artifacts,
-        plantFits: text.x >= rect.x && text.x + text.width <= rect.x + rect.width && text.y >= rect.y && text.y + text.height <= rect.y + rect.height };
+      const labelBounds = [...document.querySelectorAll<SVGSVGElement>('.artifact svg')].map(svg => {
+        const vb = svg.viewBox.baseVal;
+        const labels = [...svg.querySelectorAll<SVGGraphicsElement>('text')];
+        const fits = labels.every(text => {
+          const b = text.getBBox();
+          const matrix = svg.getScreenCTM()!.inverse().multiply(text.getScreenCTM()!);
+          return [[b.x, b.y], [b.x + b.width, b.y], [b.x, b.y + b.height], [b.x + b.width, b.y + b.height]]
+            .map(([x, y]) => new DOMPoint(x, y).matrixTransform(matrix))
+            .every(p => p.x >= vb.x - .5 && p.y >= vb.y - .5 && p.x <= vb.x + vb.width + .5 && p.y <= vb.y + vb.height + .5);
+        });
+        return { id: svg.closest('[data-channel]')!.getAttribute('data-channel'), count: labels.length, fits };
+      });
+      return { overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1, artifacts, labelBounds };
     });
     expect(geometry.overflow).toBe(false);
     expect(geometry.artifacts.every(artifact => artifact.clear), JSON.stringify(geometry.artifacts)).toBe(true);
-    expect(geometry.plantFits).toBe(true);
+    expect(geometry.labelBounds).toHaveLength(6);
+    expect(geometry.labelBounds.every(item => item.count > 0 && item.fits), JSON.stringify(geometry.labelBounds)).toBe(true);
     await page.screenshot({ path: info.outputPath(`home-${width}.png`), fullPage: true });
   });
 }

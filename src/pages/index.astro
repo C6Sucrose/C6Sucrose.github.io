@@ -3,9 +3,10 @@ import SiteLayout from '../layouts/SiteLayout.astro';
 import Workbench from '../components/Workbench.astro';
 import ProjectLibrary from '../components/ProjectLibrary.astro';
 import ProfileSections from '../components/ProfileSections.astro';
+import SpecPlate from '../components/SpecPlate.astro';
 ---
 <SiteLayout>
-  <div class="masthead"><div><p class="eyebrow">Builder / tinkerer / occasional stargazer</p><h2>A little space <span class="accent">for everything.</span></h2></div><p>AI and software, with a few detours.<br />Select an object. Get to know its owner.</p></div>
+  <div class="masthead" data-signal-surface><div><SpecPlate title="Builder / tinkerer / occasional stargazer" items={[]} /><h2>A little space <span class="accent">for everything.</span></h2></div><p>AI and software, with a few detours.<br />Select an object. Get to know its owner.</p></div>
   <Workbench />
   <ProfileSections section="about" />
   <ProjectLibrary />

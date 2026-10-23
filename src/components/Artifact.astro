@@ -3,45 +3,134 @@ import type { InterestId } from '../data/interests';
 interface Props { id: InterestId }
 const { id } = Astro.props;
 ---
-{id === 'games' && <svg viewBox="0 0 300 192" fill="none" stroke="#373d36" stroke-width="1.5" aria-hidden="true">
-  <rect x="9" y="7" width="282" height="170" rx="13" fill="#343d39" /><rect x="16" y="14" width="268" height="156" rx="8" stroke="#75796a" />
-  <path d="M26 26h248v95H26z" fill="#e9e0c9" /><path d="M26 69h248v11H26z" fill="#cc542e" stroke="none" /><path d="M26 80h248v7H26z" fill="#c19443" stroke="none" />
-  <text x="150" y="47" text-anchor="middle" fill="#333c35" stroke="none" font-family="Arial,sans-serif" font-size="13" font-weight="700">PLAY / MODIFY / REPEAT</text><text x="150" y="62" text-anchor="middle" fill="#666b5a" stroke="none" font-family="monospace" font-size="7">PERSONAL COLLECTION · EVERY GENRE</text>
-  <rect x="67" y="91" width="167" height="35" rx="16" fill="#333c35" stroke="#9d9e83" /><circle cx="93" cy="108" r="19" fill="#b0b39b" /><circle cx="207" cy="108" r="19" fill="#b0b39b" />
-  <g fill="#2d3832"><circle cx="93" cy="108" r="10" /><circle cx="207" cy="108" r="10" /></g><g stroke="#d4d1b7" stroke-width="3"><path d="M93 91v7m-16 9h7m9 11v7m10-18h7m-3-13-6 6m-15 15-5 6m0-27 5 6m15 15 6 6M207 91v7m-16 9h7m9 11v7m10-18h7m-3-13-6 6m-15 15-5 6m0-27 5 6m15 15 6 6" /></g>
-  <path d="M122 100h57v17h-57z" fill="#86886e" /><path d="M67 144h166l9 26H58Z" fill="#5a6254" /><path d="M87 153h127m-133 7h140" stroke="#77816a" />
-  <g fill="#b6b7a0"><circle cx="26" cy="158" r="3" /><circle cx="272" cy="158" r="3" /><circle cx="26" cy="17" r="3" /><circle cx="272" cy="17" r="3" /></g><text x="35" y="111" fill="#353f36" stroke="none" font-family="Arial" font-size="16" font-weight="700">A</text><text x="246" y="111" fill="#353f36" stroke="none" font-family="monospace" font-size="12">C60</text>
+{id === 'games' && <svg viewBox="0 0 300 192" fill="none" stroke="var(--hull-line)" stroke-width="1.5" aria-hidden="true">
+  <path d="M24 17h247v142l-29 17H47l-23-23Z" fill="var(--hull)" opacity=".18" transform="translate(6 8)" stroke="none" />
+  <path d="M72 150h158l20 28H53Z" fill="var(--hull-line)" /><path d="M66 173h170" stroke="var(--bone)" />
+  <rect x="24" y="17" width="247" height="87" rx="7" fill="var(--hull-raised)" stroke="var(--bleed)" />
+  <path d="M31 22h232" stroke="var(--bone)" />
+  <rect class="games-screen" x="42" y="29" width="211" height="61" fill="var(--hull)" stroke="var(--bone-dim)" />
+  <path d="m80 69 32-25 32 25 32-25 32 25" stroke="var(--core)" stroke-width="3" />
+  <path class="games-scan" data-motion d="M45 37h204" stroke="var(--bone)" opacity=".5" />
+  <rect class="games-cursor" data-motion x="229" y="72" width="12" height="4" fill="var(--bone)" />
+  <path d="M24 110 46 102h205l20 8v48H24Z" fill="var(--hull-raised)" stroke="var(--bleed)" />
+  <path d="M31 111h232" stroke="var(--bone)" />
+  <rect x="84" y="116" width="119" height="30" fill="var(--hull)" stroke="var(--bone-dim)" />
+  <path d="M93 135h13m6-6h14m6 6h14m6-6h14m6 6h17" stroke="var(--trim)" />
+  <g class="games-stick-track"><g class="games-stick" data-motion data-pose-probe>
+    <circle cx="55" cy="132" r="17" fill="var(--hull)" stroke="var(--bone-dim)" /><path d="M55 132v-15" stroke="var(--bone)" stroke-width="5" /><circle cx="55" cy="116" r="8" fill="var(--bleed)" />
+  </g></g>
+  <g fill="var(--bone-dim)"><circle cx="233" cy="120" r="5" /><circle cx="245" cy="132" r="5" /><circle cx="221" cy="132" r="5" /><circle cx="233" cy="144" r="5" /></g>
+  <path d="M13 111h11m247 0h13" stroke="var(--bone)" stroke-width="5" />
+  <text x="146" y="163" text-anchor="middle" fill="var(--bone-dim)" stroke="none" font-family="monospace" font-size="8">PLAY / MODIFY / REPEAT</text>
 </svg>}
-{id === 'pc' && <svg viewBox="0 0 245 276" fill="none" stroke="#374c47" stroke-width="1.5" aria-hidden="true">
-  <path d="M14 13h205v240H14z" fill="#5c8290" /><path d="M22 22h188v222H22z" stroke="#97b6ae" />
-  <g stroke="#bec5a3" stroke-width="1"><path d="M32 34h27v37h22M37 162h40v15h22m93-66h-20v41m22 74h-39v-52M134 27v35h-30M68 28v21h33M39 221v-37h44M198 45v29h-33M141 226v-21h-35" /><path d="M26 79h29v21h20m39 95v37h-13M171 36v47h17m-97-59v14h20" /></g>
-  <path d="M79 77h91v92H79z" fill="#bdc0ae" /><path d="M75 83H65m10 13H65m10 13H65m10 13H65m10 13H65m10 13H65m105-65h10m-10 13h10m-10 13h10m-10 13h10m-10 13h10m-10 13h10" stroke="#d2c7a4" stroke-width="4" />
-  <circle cx="125" cy="123" r="39" fill="#354643" /><circle cx="125" cy="123" r="32" stroke="#7a9384" /><g fill="#8b9d8a"><path d="M120 115c-22-23-35-3-17 9l18 1Z" /><path d="M130 117c15-25 32-11 20 6l-20 7Z" /><path d="M125 131c12 25-13 31-17 10l10-14Z" /></g><circle cx="125" cy="123" r="9" fill="#c7bc92" />
-  <path d="M32 88h18v92H32zM180 170h16v52h-16z" fill="#354744" /><path d="M30 185h29v17H30zM166 32h27v10h-27z" fill="#c0683a" />
-  <g fill="#cec094" stroke="#8c835a"><path d="M43 253v14h9v-14m6 0v14h9v-14m6 0v14h9v-14m6 0v14h9v-14m6 0v14h9v-14m6 0v14h9v-14m6 0v14h9v-14m6 0v14h9v-14m6 0v14h9v-14" /></g>
-  <g fill="#c7c6a9"><circle cx="30" cy="31" r="4" /><circle cx="202" cy="31" r="4" /><circle cx="30" cy="235" r="4" /><circle cx="202" cy="235" r="4" /></g><path d="M69 191h93v22H69z" fill="#eee3c8" stroke="none" /><text x="115" y="205" text-anchor="middle" font-family="monospace" font-size="8" fill="#354744" stroke="none">BUILD / REPAIR</text>
+{id === 'pc' && <svg viewBox="0 0 245 276" fill="none" stroke="var(--hull-line)" stroke-width="1.5" aria-hidden="true">
+  <defs><radialGradient id="pc-aperture-glow"><stop stop-color="var(--core)" /><stop offset="1" stop-color="var(--hull)" /></radialGradient></defs>
+  <path d="M25 49 183 23 215 52 219 243 57 258 25 222Z" fill="var(--hull)" opacity=".18" transform="translate(6 8)" stroke="none" />
+  <path d="M25 49 183 23 215 52 57 79Z" fill="var(--bone-dim)" />
+  <path d="M25 49 57 79 57 258 25 222Z" fill="var(--hull-line)" />
+  <path d="M57 79 215 52 219 243 57 258Z" fill="var(--hull-raised)" />
+  <path d="M31 48 183 29 207 52M62 82 207 58" stroke="var(--bone)" />
+  <path d="M68 91 200 72 201 146 69 159Z" fill="var(--hull)" stroke="var(--trim)" />
+  <g class="pc-iris-track"><g class="pc-iris" data-motion data-pose-probe>
+    <ellipse cx="104" cy="117" rx="22" ry="16" fill="url(#pc-aperture-glow)" stroke="var(--core)" />
+    <ellipse cx="170" cy="108" rx="22" ry="16" fill="url(#pc-aperture-glow)" stroke="var(--core)" />
+    <path d="M91 117h26m-13-8v16m53-17h26m-13-8v16" stroke="var(--bone)" />
+  </g></g>
+  <g stroke="var(--bone-dim)"><path d="M31 78v133m7-124v127m7-116v123M73 163l120-13m-120 20 120-13m-120 20 120-13" /></g>
+  <circle cx="97" cy="201" r="25" fill="var(--hull)" stroke="var(--trim)" />
+  <circle cx="171" cy="192" r="25" fill="var(--hull)" stroke="var(--trim)" />
+  <g class="pc-fan-a" data-motion fill="var(--bone-dim)"><path d="M97 201c-24-23-27-2-7 4l7-4c-12 28 9 27 10 6l-10-6c29-3 19-22 0-11Z" /></g>
+  <g class="pc-fan-b" data-motion fill="var(--bone-dim)"><path d="M171 192c-24-23-27-2-7 4l7-4c-12 28 9 27 10 6l-10-6c29-3 19-22 0-11Z" /></g>
+  <path d="M78 238h96" stroke="var(--trim)" /><rect class="pc-led" data-motion x="188" y="225" width="8" height="4" fill="var(--core)" />
+  <path class="pc-heat" data-motion d="M113 55q-9-10 0-20m13 18q-9-10 0-20" stroke="var(--hull-line)" stroke-width="2" opacity=".5" />
+  <text x="131" y="254" text-anchor="middle" fill="var(--bone-dim)" stroke="none" font-family="monospace" font-size="8">BUILD / REPAIR</text>
 </svg>}
-{id === 'sky' && <svg viewBox="0 0 325 300" fill="none" stroke="#3d514a" stroke-width="1.5" aria-hidden="true">
-  <path d="M24 10h278v220H24z" fill="#eae1cb" /><path d="M34 19h258v201H34z" fill="#374e54" stroke="none" />
-  <g stroke="#7c9d96" stroke-width=".7"><circle cx="164" cy="112" r="79" /><circle cx="164" cy="112" r="62" /><circle cx="164" cy="112" r="42" /><path d="M164 22v195M36 112h255m-222 47 187-97M59 51l205 122" /></g>
-  <g fill="#e7d8ac" stroke="none"><circle cx="113" cy="65" r="2" /><circle cx="153" cy="79" r="2.5" /><circle cx="190" cy="54" r="2" /><circle cx="220" cy="82" r="3" /><circle cx="200" cy="132" r="2.5" /><circle cx="160" cy="164" r="2" /><circle cx="107" cy="151" r="2" /><circle cx="92" cy="111" r="2" /><circle cx="61" cy="36" r="1" /><circle cx="262" cy="51" r="1" /><circle cx="253" cy="173" r="1" /></g><path d="m113 65 40 14 37-25 30 28-20 50-40 32-53-13-15-40" stroke="#c4c6a5" stroke-width=".9" />
-  <g transform="translate(174 192) rotate(-24)" stroke="#35453e" stroke-width="2"><path d="M-62 8H66v43H-62Z" fill="#e2d8bf" /><path d="M-61 7h17v45h-17M39 7h24v45H39Z" fill="#c76237" /><path d="M-71 3h12v54h-12zM63 2h16v56H63z" fill="#ded7bb" /><path d="M79 9h17v42H79z" fill="#52696a" /><path d="M-88 19h17v19h-17z" fill="#425a52" /><path d="M-9 51v17h22V51m-12 17v50m0-35-46 31m46-31 44 31" fill="#828d77" /><path d="M-33 7v45m54-45v45" /><path d="M-35-2h62v9h-62z" fill="#7d978e" /></g>
+{id === 'sky' && <svg viewBox="0 0 325 300" fill="none" stroke="var(--hull-line)" stroke-width="1.5" aria-hidden="true">
+  <defs>
+    <clipPath id="sky-window"><circle cx="155" cy="128" r="88" /></clipPath>
+    <radialGradient id="sky-star-glow"><stop stop-color="var(--bone)" /><stop offset="1" stop-color="var(--hull)" /></radialGradient>
+  </defs>
+  <path d="M44 21h222v216H44Z" fill="var(--hull)" opacity=".18" transform="translate(6 8)" stroke="none" />
+  <path d="M44 21h222v216H44Z" fill="var(--hull-raised)" stroke="var(--bleed)" />
+  <path d="M49 26h210M49 26v203" stroke="var(--bone)" />
+  <circle cx="155" cy="128" r="101" fill="var(--hull)" stroke="var(--bone-dim)" />
+  <g clip-path="url(#sky-window)"><g class="sky-field">
+    <circle cx="155" cy="128" r="88" fill="var(--hull)" />
+    <circle cx="189" cy="85" r="12" fill="url(#sky-star-glow)" stroke="none" />
+    {[[104,89],[145,62],[190,84],[210,137],[155,178],[101,159]].map(([cx,cy],i) => <circle class="sky-star" data-motion style={`--star:${i}`} cx={cx} cy={cy} r={i === 2 ? 3 : 2} fill="var(--bone)" stroke="none" />)}
+    <path d="m104 89 41-27 45 22 20 53-55 41-54-19" stroke="var(--hull-line)" />
+    <g class="sky-satellite" data-motion stroke="var(--bone-dim)"><path d="M77 51h7m-3-4v8" /><rect x="69" y="48" width="6" height="6" /><rect x="86" y="48" width="6" height="6" /></g>
+  </g></g>
+  <g class="sky-iris" data-motion data-pose-probe>
+    {[0,60,120,180,240,300].map(angle => <path transform={`rotate(${angle} 155 128)`} d="M155 30a98 98 0 0 1 85 49L220.818 90A76 76 0 0 0 155 52Z" fill="var(--hull-line)" stroke="var(--bone-dim)" />)}
+  </g>
+  <circle cx="155" cy="128" r="99" stroke="var(--bleed)" />
+  <g class="sky-scope"><path d="M222 206v56h55m-42-53h47v16h-47Z" fill="var(--hull-raised)" stroke="var(--bone-dim)" /><path d="M241 211h34" stroke="var(--bone)" /><circle cx="282" cy="217" r="10" fill="var(--hull)" stroke="var(--core)" /></g>
+  <text x="149" y="256" text-anchor="middle" fill="var(--bone-dim)" stroke="none" font-family="monospace" font-size="9">OBSERVATORY / LOOK UP</text>
+  <path d="M49 274h170m-162-5v10m154-10v10" stroke="var(--bleed)" />
 </svg>}
-{id === 'nature' && <svg viewBox="0 0 220 269" fill="none" stroke="#40553c" stroke-width="1.5" aria-hidden="true">
-  <ellipse cx="109" cy="242" rx="63" ry="13" fill="#687253" opacity=".2" stroke="none" /><path d="m53 166 15 69c3 13 71 14 77 0l16-69" fill="#bd7651" /><ellipse cx="107" cy="166" rx="55" ry="18" fill="#d6976b" /><ellipse cx="107" cy="162" rx="47" ry="12" fill="#535b42" />
-  <path d="M108 163c-7-40-10-76-2-117m0 79-28-37m31 63 30-35m-30-34 26-36m-27 50-25-38" stroke-width="3" />
-  <path d="M106 68C80 56 81 24 108 16c29 9 29 40-2 52Z" fill="#799576" /><path d="M79 100C48 104 37 77 46 63c30-7 54 12 33 37Z" fill="#94a57d" /><path d="M133 76c-3-27 27-47 48-34 2 27-18 46-48 34Z" fill="#688c71" /><path d="M139 126c-4-31 26-50 48-33 0 27-22 42-48 33Z" fill="#899e74" /><path d="M84 139c-28 10-51-13-43-33 26-16 53-2 43 33Z" fill="#5c8469" />
-  <g stroke="#c4c69b" stroke-width="1"><path d="m107 29-1 31m-51 10 20 25m96-45-31 23m37 29-32 22m-94-11 28 23" /></g>
-  <rect id="pot-label-box" x="67" y="187" width="80" height="32" fill="#ebe0bd" stroke="#ad7950" /><text id="pot-label" x="107" y="205" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="8" fill="#35482f" stroke="none">LIFE SUPPORT</text>
-  <path d="m147 177 16-53 20 6-15 53Z" fill="#ede3c5" /><path d="m165 134 11 3m-13 4 11 3m-13 4 9 3" stroke-width="1" />
+{id === 'nature' && <svg viewBox="0 0 220 269" fill="none" stroke="var(--hull-line)" stroke-width="1.5" aria-hidden="true">
+  <path d="M50 139h110v94q-55 28-110 0Z" fill="var(--hull)" opacity=".18" transform="translate(6 8)" stroke="none" />
+  <path d="M51 142v91q54 25 108 0v-91" fill="var(--bone)" fill-opacity=".16" stroke="var(--bone-dim)" />
+  <ellipse cx="105" cy="143" rx="56" ry="14" fill="var(--hull-raised)" stroke="var(--trim)" />
+  <path d="M67 148v83m18-80v86m20-85v88m20-88v86m18-89v82M55 220q50 18 100 0" stroke="var(--bone-dim)" />
+  <path d="M108 137v57m0-14-17 14m17-3 19 11m-19-1-11 20m11-17 13 21" stroke="var(--trim)" stroke-width="2" />
+  <path d="M106 142c-5-30 0-70 2-105m-2 52L72 71m34 43 37-25" stroke="var(--trim)" stroke-width="3" />
+  <g class="leaf-track"><g class="nature-leaf leaf-a" data-motion data-pose-probe>
+    <path d="M108 66C78 53 85 21 109 13c27 14 27 42-1 53Z" fill="var(--trim)" /><path d="m109 26-1 35" stroke="var(--bone)" />
+  </g></g>
+  <g class="leaf-track"><g class="nature-leaf leaf-b" data-motion>
+    <path d="M77 82C48 93 33 69 40 50c31-10 51 13 37 32Z" fill="var(--trim)" /><path d="m45 57 28 20" stroke="var(--bone)" />
+  </g></g>
+  <g class="leaf-track"><g class="nature-leaf leaf-c" data-motion>
+    <path d="M140 98c-6-31 18-52 42-36 0 27-18 42-42 36Z" fill="var(--trim)" /><path d="m172 69-28 24" stroke="var(--bone)" />
+  </g></g>
+  <g class="leaf-track"><g class="nature-droop" data-motion>
+    <path d="M99 128c-32 6-53-7-47-27 26-16 49 7 47 27Z" fill="var(--trim)" /><path d="m60 108 34 17" stroke="var(--bone)" />
+  </g></g>
+  <path class="nature-drop" data-motion d="M177 102q-7 10 0 12 7-2 0-12Z" fill="var(--bone)" stroke="none" />
+  <rect id="pot-label-box" x="67" y="187" width="80" height="32" fill="var(--bone)" stroke="var(--ink-dim)" />
+  <text id="pot-label" x="107" y="205" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="8" fill="var(--ink)" stroke="none">LIFE SUPPORT</text>
+  <path d="M54 143q49 13 100 0M58 232q47 20 94 0" stroke="var(--bone)" />
 </svg>}
-{id === 'cooking' && <svg viewBox="0 0 290 165" fill="none" stroke="#475441" stroke-width="1.5" aria-hidden="true">
-  <g transform="translate(18 15) rotate(-6 77 65)"><path d="M0 0h160v123H0z" fill="#eee5cb" /><path d="M0 0h160v18H0z" fill="#c05331" stroke="none" /><text x="80" y="12" text-anchor="middle" font-family="monospace" font-size="7" fill="#f7e9cc" stroke="none">KITCHEN / WORKING NOTES</text><path d="M12 33h136M12 49h136M12 65h136M12 81h136M12 97h136M12 113h136" stroke="#c2c1a4" stroke-width=".8" /><path d="M8 29v87" stroke="#b38264" stroke-width=".6" /></g>
-  <g transform="translate(88 -1) rotate(11 90 83)"><path d="m128 71 70-8c12-1 14 17 1 20l-72 8" fill="#455449" /><ellipse cx="83" cy="80" rx="57" ry="50" fill="#3d4f43" /><ellipse cx="83" cy="80" rx="48" ry="41" fill="#2e4037" stroke="#85916e" /><path d="M50 67c-9-16 17-30 29-19 20-9 45 11 34 27 12 13-6 36-21 24-19 13-43 0-36-13-15-1-16-15-6-19Z" fill="#e8dfb7" stroke="#adb68d" /><ellipse cx="83" cy="72" rx="17" ry="15" fill="#d4a144" stroke="#b78b36" /><ellipse cx="181" cy="73" rx="9" ry="3" fill="#dad5bb" /></g><path d="m202 130 21 4m-12-14 3 27m21-36 11 9m-4-15-3 25" stroke="#6d8154" stroke-width="3" />
+{id === 'cooking' && <svg viewBox="0 0 290 165" fill="none" stroke="var(--hull-line)" stroke-width="1.5" aria-hidden="true">
+  <path d="M53 61h180v50q-9 32-90 32-81 0-90-32Z" fill="var(--hull)" opacity=".18" transform="translate(6 8)" stroke="none" />
+  <path d="M53 61h180v50q-9 32-90 32-81 0-90-32Z" fill="var(--hull-raised)" stroke="var(--peach)" />
+  <path d="M53 75H28v23h27m178-23h26v23h-26" stroke="var(--bone-dim)" stroke-width="6" />
+  <ellipse cx="143" cy="64" rx="91" ry="20" fill="var(--hull-line)" stroke="var(--peach)" />
+  <path d="M70 52q70-21 145 0" stroke="var(--bone)" />
+  <path d="M122 45V32h42v13" stroke="var(--bone-dim)" stroke-width="8" />
+  <path d="M85 48V36m114 12V36" stroke="var(--bone-dim)" stroke-width="5" />
+  <ellipse cx="143" cy="92" rx="53" ry="19" fill="var(--peach)" stroke="var(--bone-dim)" />
+  <g class="broth" data-motion data-pose-probe>
+    <ellipse cx="143" cy="92" rx="39" ry="10" stroke="var(--ink-dim)" />
+    <path d="m111 89 16-3m16 9 13-4m14-2 11 4" stroke="var(--trim)" stroke-width="5" />
+  </g>
+  <g class="cooking-air" stroke="var(--bone-dim)" stroke-width="2">
+    <path class="steam-a" data-motion pathLength="100" d="M86 37c-16-11 10-13-3-26" />
+    <path class="steam-b" data-motion pathLength="100" d="M144 26c-14-8 9-12 0-21" />
+    <path class="steam-c" data-motion pathLength="100" d="M199 38c14-12-10-14 3-28" />
+  </g>
+  <path d="m94 151 5-6 5 6m19 0 5-6 5 6m19 0 5-6 5 6m19 0 5-6 5 6" stroke="var(--peach)" />
+  <rect class="cooking-lamp" data-motion x="135" y="136" width="15" height="4" fill="var(--core)" />
+  <text x="143" y="127" text-anchor="middle" fill="var(--bone-dim)" stroke="none" font-family="monospace" font-size="8">KITCHEN / WORKING NOTES</text>
 </svg>}
-{id === 'ai' && <svg viewBox="0 0 277 160" fill="none" stroke="#c9d4bc" stroke-width="1.4" aria-hidden="true">
-  <path d="M6 3h260v148H6z" fill="#597f8b" stroke="#3e5e65" /><path d="M13 10h246v134H13z" stroke="#a2bab1" stroke-width=".7" />
-  <g stroke="#a2bab1" stroke-width=".5" opacity=".6"><path d="M13 32h245M13 54h245M13 76h245M13 98h245M13 120h245M35 10v134M57 10v134M79 10v134M101 10v134M123 10v134M145 10v134M167 10v134M189 10v134M211 10v134M233 10v134" /></g>
-  <path d="M112 115h74v11h-74Zm22-1-7-23 26-9 13 32m-21-31 27-42-15-9-30 47m30-47-41-15-9 17 43 17" fill="#73949a" /><circle cx="140" cy="87" r="13" fill="#a0b4ab" /><circle cx="164" cy="39" r="11" fill="#d3c59d" /><circle cx="111" cy="26" r="7" fill="#bdc9b2" />
-  <path d="m105 28-19 3-9-8m15 8-5 16 7 6M192 84h42m-9-8 9 8-9 8M100 63l-12 16 9 8" stroke="#dfc186" /><text x="23" y="30" font-family="Arial,sans-serif" font-size="8" font-weight="700" fill="#e8e1c5" stroke="none">FIG. 06</text><text x="137" y="138" text-anchor="middle" font-family="monospace" font-size="7" fill="#e8e1c5" stroke="none">ROBOTICS / ARTIFICIAL INTELLIGENCE</text>
+{id === 'ai' && <svg viewBox="0 0 277 160" fill="none" stroke="var(--hull-line)" stroke-width="1.5" aria-hidden="true">
+  <path d="M27 26h224v118H27Z" fill="var(--hull)" opacity=".18" transform="translate(6 8)" stroke="none" />
+  <path d="M27 26h224v118H27Z" fill="var(--hull-raised)" stroke="var(--bone-dim)" />
+  <path d="M32 31h213M32 31v106" stroke="var(--bone)" />
+  <path d="M42 125h74v10H42Z" fill="var(--hull-line)" stroke="var(--bone-dim)" />
+  <g class="ai-reach"><g class="ai-arm" data-motion data-pose-probe>
+    <path d="m66 120-12-28 58-49 18 18-54 39 9 20" fill="var(--bone-dim)" />
+    <path d="m117 45 67 21-7 21-59-25Z" fill="var(--bone)" />
+    <circle cx="70" cy="98" r="13" fill="var(--hull-line)" stroke="var(--bone-dim)" />
+    <circle cx="119" cy="54" r="12" fill="var(--hull-line)" stroke="var(--bone)" />
+    <path d="m173 63 24-5v34l-24-5Z" fill="var(--hull-line)" stroke="var(--bone-dim)" />
+    <circle cx="213" cy="75" r="29" fill="var(--hull)" stroke="var(--bone)" />
+    <g class="ai-focus" data-motion><circle cx="213" cy="75" r="23" stroke="var(--bone-dim)" stroke-dasharray="3 7" /><path d="M213 46v8m0 42v8m-29-29h8m42 0h8" stroke="var(--core)" /></g>
+    <circle class="ai-pupil" cx="213" cy="75" r="8" fill="var(--core)" stroke="var(--bone)" />
+    <path class="ai-scan" data-motion d="M193 69h40" stroke="var(--bone-dim)" />
+  </g></g>
+  <path d="M157 112h83m-78 6h73" stroke="var(--bone-dim)" />
+  <text x="139" y="152" text-anchor="middle" fill="var(--bone-dim)" stroke="none" font-family="monospace" font-size="7">ROBOTICS / ARTIFICIAL INTELLIGENCE</text>
 </svg>}
